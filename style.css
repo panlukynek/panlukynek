@@ -3,43 +3,33 @@
 .boldonse{
     font-family: "Boldonse", sans-serif;
 }
+
 /* Color variables (thx juxtopposed) */
-@media (prefers-color-scheme: light) {
+:root{
+    --text: #ffffff;
+    --bg: #000000;
+    --primary: #850042;
+    --secondary: #79420c;
+    --accent: #1dd3c7;
+    --icon-filter: invert(0);
+    --body-bg-image: url(assets/img/background-dark.png);
+    --transition-curve: 0.25s cubic-bezier(0, 0.5, 0, 1);
+}
+@media(prefers-color-scheme: light){
     :root{
         --text: #000000;
         --bg: #ffffff;
         --primary: #ff7abd;
         --secondary: #f3bd86;
         --accent: #2ce2d6;
-    }
-    body{
-        background-image: url(assets/img/background-light.png);
-    }
-    .github-icon{
-        filter: invert(1);
-    }
-    .itchio-icon{
-        filter: invert(1);
+        --icon-filter: invert(1);
+        --body-bg-image: url(assets/img/background-light.png);
     }
 }
-@media (prefers-color-scheme: dark) {
-    :root{
-        --text: #ffffff;
-        --bg: #000000;
-        --primary: #850042;
-        --secondary: #79420c;
-        --accent: #1dd3c7;
-    }
-    body{
-        background-image: url(assets/img/background-dark.png);
-    }
-    .github-icon{
-        filter: invert(0);
-    }
-    .itchio-icon{
-        filter: invert(0);
-    }
+.icon-invert{
+    filter: var(--icon-filter);
 }
+
 ::selection{
     background-color: var(--text);
     color: var(--bg);
@@ -47,30 +37,34 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     text-decoration: none;
     color: var(--text);
-    font-family: "JetBrains Mono", monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    user-select: none;
 }
 body{
     background-color: var(--bg);
+    background-image: var(--body-bg-image);
     background-size: cover;
+    background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    overflow-x: hidden;
 }
+
 .hero{
     height: 100vh;
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
     align-items: center;
 }
     .hero-cont{
         display: flex;
         flex-direction: column;
-        align-items: left;
+        align-items: flex-start;
         padding-left: 25vw;
         gap: 2rem;
     }
@@ -84,34 +78,31 @@ body{
                 transform: skewX(0deg);
                 color: #ffffff;
                 mix-blend-mode: difference;
-                transition: all 0.25s cubic-bezier(0.000, 0.500, 0.000, 1.000);
+                transition: all var(--transition-curve)
         }
         .hero-text span:hover{
-                    font-weight: 700;
-                    transform: skewX(-12deg);
+            font-weight: 700;
+            transform: skewX(-12deg);
         }
-
         .hero-links{
             display: flex;
             flex-direction: row;
-            font-size: 1.5rem;
-            gap: 1rem;
-            width: 1.2rem;
-            height: 1.2rem;
-            font-weight: 100;
-            transform: skewX(0deg);
-            transition: all 0.25s cubic-bezier(0.000, 0.500, 0.000, 1.000);
+            justify-content: flex-start;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: nowrap;
         }
         .hero-links a{
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 1.5rem;
         }
         .hero-links a span{
             display: inline-block;
             font-weight: 100;
             transform: skewX(0deg);
-            transition: all 0.25s cubic-bezier(0.000, 0.500, 0.000, 1.000);
+            transition: all var(--transition-curve);
         }
         .hero-links a span:hover{
             font-weight: 700;
@@ -121,4 +112,19 @@ body{
             width: 1.2rem;
             height: 1.2rem;
             object-fit: contain;
+        }
+        .hero-links a[href*='gitlab.com'] .icon{
+            transform: scale(2.4);
+        }
+        .hero-links a[href*='youtube.com'] .icon{
+            transform: scale(1.5);
+        }
+        .hero-text{
+        font-size: 2.5rem;
+        }
+        .hero-links{
+        gap: 1rem;
+        }
+        .hero-links a{
+        font-size: 1rem;
         }

@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+
+.boldonse {
+    font-family: 'Boldonse', sans-serif;
+}
+
+/* Color variables */
+:root {
+    --text: #ffffff;
+    --bg: #000000;
+    --primary: #850042;
+    --secondary: #79420c;
+    --accent: #1dd3c7;
+    --icon-filter: invert(0);
+    --body-bg-image: url(assets/img/background-dark.png);
+}
+
+@media(prefers-color-scheme: light) {
+    :root {
+        --text: #000000;
+        --bg: #ffffff;
+        --primary: #ff7abd;
+        --secondary: #f3bd86;
+        --accent: #2ce2d6;
+        --icon-filter: invert(1);
+        --body-bg-image: url(assets/img/background-light.png);
+    }
+}
+
+.icon-invert {
+    filter: var(--icon-filter);
+}
+
+::selection {
+    background-color: var(--text);
+    color: var(--bg);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-color: var(--bg);
+    background-image: var(--body-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    overflow-x: hidden; /* Prevent accidental horizontal scroll */
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 1rem; /* Symmetrical padding for mobile */
+    width: 100%;
+    max-width: 1200px; /* Optional: constrain max width */
+}
+
+.hero-text {
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.hero-text span {
+    display: inline-block;
+    font-weight: 100;
+    transform: skewX(0deg);
+    color: #ffffff;
+    mix-blend-mode: difference;
+    transition: all 0.25s cubic-bezier(0, 0.5, 0, 1);
+}
+
+.hero-text span:hover {
+    font-weight: 700;
+    transform: skewX(-12deg);
+}
+
+.hero-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Gap for vertical mobile layout */
+}
+
+.hero-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Gap between icon and text */
+    font-size: 1.1rem; /* Mobile font size for links */
+    padding: 0.5rem; /* Tappable area padding */
+}
+
+.hero-links a span {
+    display: inline-block;
+    font-weight: 100;
+    transform: skewX(0deg);
+    transition: all 0.25s cubic-bezier(0, 0.5, 0, 1);
+}
+
+.hero-links a span:hover {
+    font-weight: 700;
+    transform: skewX(-12deg);
+}
+
+.icon {
+    width: 1.5rem; /* Base icon size for mobile */
+    height: 1.5rem;
+    object-fit: contain;
+}
+
+.hero-links a[href*='gitlab.com'] .icon {
+    transform: scale(2.4);
+}
+
+.hero-links a[href*='youtube.com'] .icon {
+    transform: scale(1.5);
+}
+
+/* Tablet and larger screens */
+@media(min-width: 768px) {
+    .hero {
+        justify-content: flex-start;
+        padding-left: 10vw; /* Overall left offset for the content area */
+        padding-right: 5vw; /* Space on the right of the content area */
+    }
+    .hero-cont {
+        align-items: flex-start;
+        text-align: left;
+        /* padding: 1rem; is inherited and provides symmetrical internal padding */
+        /* No padding-left: 0; override needed here */
+        gap: 2.5rem;
+        width: auto; /* Allow hero-cont to size based on its content or max-width */
+    }
+    .hero-text {
+        font-size: 3.5rem;
+    }
+    .hero-links {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 1rem; /* Reduced gap for row layout */
+        flex-wrap: nowrap; /* Prevent links from wrapping */
+        width: 100%; /* Allow links container to use available width */
+    }
+    .hero-links a {
+        font-size: 1rem; /* Reduced font size for links in a row */
+        padding: 0.4rem; /* Slightly reduced padding */
+    }
+    .icon {
+        /* Adjusted icon size for row layout on tablets/desktops */
+        width: 1rem;
+        height: 1rem;
+    }
+    /* Specific icon scales will apply to this new 1rem base size */
+}
+
+/* Desktop screens */
+@media(min-width: 1024px) {
+    .hero {
+        padding-left: 15vw; /* Increased left offset for desktop */
+        /* padding-right: 10vw; /* Optional: adjust for balance */
+    }
+    /* .hero-cont continues to use its symmetrical internal padding (e.g., 1rem from base) */
+    /* You could increase .hero-cont padding here if needed: */
+    /* .hero-cont { padding: 1.5rem; gap: 3rem; } */
+
+    .hero-text {
+        font-size: 4rem;
+    }
+    .hero-links {
+        gap: 1.2rem; /* Slightly larger gap for desktop links */
+    }
+    .hero-links a {
+        font-size: 1.1rem; /* Slightly larger font for desktop links */
+        padding: 0.5rem;
+    }
+    /* .icon size (1rem) is inherited from tablet, or can be adjusted again: */
+    /* .icon { width: 1.1rem; height: 1.1rem; } */
+}
